@@ -1,9 +1,33 @@
-import { View , Text, StyleSheet, TextInput } from 'react-native';
+import { View , Text, StyleSheet, TextInput, KeyboardTypeOptions } from 'react-native';
+import { Controller } from 'react-hook-form';
 
-export function Input() {
+interface InputProps{
+    name: string,
+    control: any,
+    placeholder?: string,
+    rules?: object,
+    error?: string,
+    keyboardType: KeyboardTypeOptions;
+}
+
+export function Input({ name, control, placeholder, rules, error, keyboardType }: InputProps) {
     return (
         <View style={styles.container}>
-            <TextInput placeholder='Digite algo...'/>
+            <Controller
+                control={control}
+                name={name}
+                rules={rules}
+
+                render={({ field: { onChange, onBlur, value }}) => (
+                    <TextInput
+                        placeholder={ placeholder }
+                        onBlur={onBlur}
+                        value={value}
+                        onChangeText={onChange}
+                        keyboardType='default'
+                    />
+                )}
+            />
         </View>
     )
 }
