@@ -34,8 +34,39 @@ export default function Step() {
                     error={errors.name?.message}
                     keyboardType="default"
                 />
-            </ScrollView>
 
+                <Text style={styles.label}>Sua idade atual:</Text>
+                <Input 
+                    name="age"
+                    control={control}
+                    placeholder="Digite sua altura: Ex 27"
+                    error={errors.age?.message}
+                    keyboardType="decimal-pad"
+                />
+
+                <Text style={styles.label}>Seu peso atual:</Text>
+                <Input 
+                    name="weight"
+                    control={control}
+                    placeholder="Digite seu peso: Ex 54"
+                    error={errors.weight?.message}
+                    keyboardType="decimal-pad"
+                />
+
+                <Text style={styles.label}>Sua altura:</Text>
+                <Input 
+                    name="height"
+                    control={control}
+                    placeholder="Digite sua altura: Ex 1.67"
+                    error={errors.height?.message}
+                    keyboardType="decimal-pad"
+                />
+
+                <Pressable style={styles.button}>
+                    <Text style={styles.buttonText}>Avançar</Text>
+                </Pressable>
+
+            </ScrollView>
         </View>
     )
 }
@@ -54,6 +85,19 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         fontSize: 16,
         color: colors.white,
+        fontWeight: 'bold'
+    },
+
+    button: {
+        backgroundColor: colors.blue,
+        height: 44,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 4
+    },
+    buttonText: {
+        color: colors.white,
+        fontSize: 16,
         fontWeight: 'bold'
     }
 })
