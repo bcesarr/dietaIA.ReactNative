@@ -20,6 +20,10 @@ export default function Step() {
         resolver: zodResolver(schema)
     })
 
+    function handleCreate(data: FormData) {
+        console.log(data);
+    }
+
     return (
         <View style={styles.container}>
             
@@ -62,7 +66,7 @@ export default function Step() {
                     keyboardType="decimal-pad"
                 />
 
-                <Pressable style={styles.button}>
+                <Pressable style={styles.button} onPress={handleSubmit(handleCreate)}>
                     <Text style={styles.buttonText}>Avançar</Text>
                 </Pressable>
 
