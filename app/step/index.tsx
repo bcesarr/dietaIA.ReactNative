@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { View, Text, Image, StyleSheet, Pressable, ScrollView } from 'react-native';
+import { router } from 'expo-router';
 
 const schema = z.object({
     name: z.string().min(1, { message: 'O nome é obrigatório' }),
@@ -22,6 +23,8 @@ export default function Step() {
 
     function handleCreate(data: FormData) {
         console.log(data);
+
+        router.push("/create")
     }
 
     return (
