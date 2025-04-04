@@ -17,7 +17,7 @@ type DataState = {
     setPageTwo: (data: Pick<User, 'gender' | 'level' | 'objective'>) => void;
 }
 
-export const useDataStrore = create<DataState>((set) =>({
+export const useDataStore = create<DataState>((set) =>({
     user: {
         name: '',
         weight: '',

@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { View, Text, Image, StyleSheet, Pressable, ScrollView } from 'react-native';
 import { router } from 'expo-router';
+import { useDataStore } from '../../store/data';
 
 const schema = z.object({
     name: z.string().min(1, { message: 'O nome é obrigatório' }),
@@ -21,8 +22,15 @@ export default function Step() {
         resolver: zodResolver(schema)
     })
 
+    const setPageOne = useDataStore(state => state.setPageOne)
+
     function handleCreate(data: FormData) {
-        console.log(data);
+        setPageOne({
+            name: data.name,
+            age: data.age,
+            weight: data.weight,
+            height: data.height
+        });
 
         router.push("/create")
     }
