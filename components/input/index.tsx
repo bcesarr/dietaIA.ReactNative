@@ -3,11 +3,11 @@ import { Controller } from 'react-hook-form';
 import { colors } from '../../constants/colors';
 
 interface InputProps{
-    name: string,
-    control: any,
-    placeholder?: string,
-    rules?: object,
-    error?: string,
+    name: string;
+    control: any;
+    placeholder?: string;
+    rules?: object;
+    error?: string;
     keyboardType: KeyboardTypeOptions;
 }
 
