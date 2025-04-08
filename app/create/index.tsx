@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { Header } from "@/components/header";
 import { Select } from '../../components/input/select';
 import { useDataStore } from '../../store/data';
+import { router } from 'expo-router';
 
 const schema = z.object({
     gender: z.string().min(1, { message: 'O sexo é obrigatório' }),
@@ -47,6 +48,8 @@ export default function Create() {
             level: data.level,
             objective: data.objective
         })
+
+        router.push('/nutrition')
     }
 
     return (

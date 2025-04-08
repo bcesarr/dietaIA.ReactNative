@@ -25,6 +25,14 @@ export default function RootLayout() {
         headerShown: false
       }}
     />
+
+    <Stack.Screen
+      name="nutrition/index"
+      options={{
+        // Para tirar o Header do app
+        headerShown: false
+      }}
+    />
   </Stack>
   );
 }
