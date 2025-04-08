@@ -49,7 +49,7 @@ export function Select({ name, control, placeholder, error, options }: SelectPro
                                 activeOpacity={1}
                                 onPress={() => setVisible(false)}
                             >
-                                <TouchableOpacity style={styles.modalContainer} activeOpacity={1}>
+                                <TouchableOpacity style={styles.modalContent} activeOpacity={1}>
                                     <FlatList 
                                         contentContainerStyle={{ gap: 4 }}
 
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     modalContainer: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: 'rgba(0,0,0, 0.5'
+        backgroundColor: 'rgba(0,0,0, 0.5)'
     },
     modalContent: {
         padding: 20,

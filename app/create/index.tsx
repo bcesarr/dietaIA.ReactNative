@@ -4,7 +4,8 @@ import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Header } from "@/components/header";
-import { Select } from '../../components/input/select'
+import { Select } from '../../components/input/select';
+import { useDataStore } from '../../store/data';
 
 const schema = z.object({
     gender: z.string().min(1, { message: 'O sexo é obrigatório' }),
@@ -19,10 +20,34 @@ export default function Create() {
         resolver: zodResolver(schema)
     })
 
+    const setPageTwo = useDataStore(state => state.setPageTwo)
+
     const genderOptions = [
-        { label: 'Massculino', value: 'Masculino' },
+        { label: 'Masculino', value: 'Masculino' },
         { label: 'Feminino', value: 'Feminino' }
     ]
+
+    const levelOptions = [
+        { label: 'Sedentário (pouco ou nenhuma atividade física)', value: 'Sedentário' },
+        { label: 'Levemente ativo (exercícios de 1 a 3 vezes na semana)', value: 'Levemente ativo (exercícios de 1 a 3 vezes na semana)' },
+        { label: 'Moderadamente ativo (exercícios de 3 a 5 vezes na semana)', value: 'Moderadamente ativo (exercícios de 3 a 5 vezes na semana)' },
+        { label: 'Altamente ativo (exercícios de 5 a 7 dias na semana)', value: 'Altamente ativo (exercícios de 5 a 7 dias na semana)' }
+    ]
+
+    const objectiveOptions = [
+        { label: 'Emagrecer', value: 'Emagrecer' },
+        { label: 'Hipertrofia', value: 'Hipertrofia' },
+        { label: 'Hipertrofia + Definição', value: 'Hipertrofia + Definição' },
+        { label: 'Definição', value: 'Definição' }
+    ]
+
+    function handleCreate(data: FormData) {
+        setPageTwo({
+            gender: data.gender,
+            level: data.level,
+            objective: data.objective
+        })
+    }
 
     return (
         <View style={styles.container}>
@@ -36,9 +61,32 @@ export default function Create() {
                 <Select
                     control={control}
                     name='gender'
+                    placeholder='Selecione o seu sexo...'
                     error={errors.gender?.message}
                     options={genderOptions}
                 />
+
+                <Text style={styles.label}>Selecione o nível de atividade física: </Text>
+                <Select
+                    control={control}
+                    name='level'
+                    placeholder='Selecione o seu nível de atividades físicas'
+                    error={errors.level?.message}
+                    options={levelOptions}
+                />
+
+                <Text style={styles.label}>Selecione o seu objetivo: </Text>
+                <Select
+                    control={control}
+                    name='objective'
+                    placeholder='Selecione o seu objetivo'
+                    error={errors.objective?.message}
+                    options={objectiveOptions}
+                />
+
+                <Pressable style={styles.button} onPress={handleSubmit(handleCreate)}>
+                    <Text style={styles.buttonText}>Avançar</Text>
+                </Pressable>
             </ScrollView>
 
         </View>
@@ -61,4 +109,16 @@ const styles = StyleSheet.create({
         color: colors.white,
         fontWeight: 'bold'
     },
+    button: {
+        backgroundColor: colors.blue,
+        height: 44,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 4
+    },
+    buttonText: {
+        color: colors.white,
+        fontSize: 16,
+        fontWeight: 'bold'
+    }
 })
